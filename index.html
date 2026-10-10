@@ -1,28 +1,115 @@
 <!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LKM Tuas dan Katrol</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#e9eef3;font-family:Arial,sans-serif;color:#17212b}.toolbar{position:sticky;top:0;z-index:5;background:#17212b;padding:10px;display:flex;gap:8px;flex-wrap:wrap}.toolbar button{padding:9px 13px;border:0;border-radius:6px;font-weight:bold;cursor:pointer}.status{color:white;font-size:12px;margin:auto 0 auto auto}.sheet{width:210mm;height:297mm;margin:10mm auto;background:#fff;padding:15mm 16mm;box-shadow:0 2px 10px #0002}.page{height:267mm;position:relative}h1{text-align:center;font-size:24px;margin:0;color:#17324d}h2{text-align:center;font-size:16px;color:#315b7d;margin:3px 0 14px}h3{font-size:15px;color:#17324d;border-bottom:2px solid #315b7d;padding-bottom:4px;margin:13px 0 7px}h4{font-size:13px;color:#315b7d;margin:10px 0 5px}p,li,td,th,label{font-size:11.5px;line-height:1.4}input,textarea{width:100%;padding:5px;border:1px solid #9aa9b5;border-radius:4px;font:inherit}textarea{min-height:42px;resize:vertical}.identity{display:grid;grid-template-columns:1fr 1fr;gap:7px}.box{background:#f1f6fa;border-left:4px solid #315b7d;padding:7px;margin:7px 0}table{width:100%;border-collapse:collapse;margin:6px 0}th,td{border:1px solid #9aa9b5;padding:5px;vertical-align:top}th{background:#edf3f7}.checks{display:flex;gap:25px}.footer{position:absolute;bottom:0;left:0;right:0;border-top:1px solid #cbd5df;padding-top:4px;font-size:9px;color:#687684;display:flex;justify-content:space-between}@media print{@page{size:A4 portrait;margin:0}body{background:#fff}.toolbar{display:none}.sheet{margin:0;width:210mm;height:297mm;box-shadow:none;page-break-after:always}.sheet:last-child{page-break-after:auto}}@media(max-width:800px){.sheet{width:100%;height:auto;margin:0}.page{height:auto}.identity{grid-template-columns:1fr}}
+*{box-sizing:border-box}body{margin:0;background:#e9eef3;font-family:Arial,sans-serif;color:#17212b}.toolbar{position:sticky;top:0;z-index:5;background:#17212b;padding:10px;display:flex;gap:8px;flex-wrap:wrap}.toolbar button{padding:9px 13px;border:0;border-radius:6px;font-weight:bold;cursor:pointer}.status{color:white;font-size:12px;margin:auto 0 auto auto}.sheet{width:min(100% - 28px,1000px);min-height:0;height:auto;margin:18px auto;background:#fff;padding:28px 32px;box-shadow:0 5px 22px rgba(100,56,28,.12);border:1px solid #f4d7c2;border-radius:16px}.page{min-height:0;height:auto;position:relative}h1{text-align:center;font-size:24px;margin:0;color:#17324d}h2{text-align:center;font-size:16px;color:#315b7d;margin:3px 0 14px}h3{font-size:15px;color:#17324d;border-bottom:2px solid #315b7d;padding-bottom:4px;margin:13px 0 7px}h4{font-size:13px;color:#315b7d;margin:10px 0 5px}p,li,td,th,label{font-size:11.5px;line-height:1.4}input,textarea{width:100%;padding:5px;border:1px solid #9aa9b5;border-radius:4px;font:inherit}textarea{min-height:42px;resize:vertical}.identity{display:grid;grid-template-columns:1fr 1fr;gap:7px}.box{background:#f1f6fa;border-left:4px solid #315b7d;padding:7px;margin:7px 0}table{width:100%;border-collapse:collapse;margin:6px 0}th,td{border:1px solid #9aa9b5;padding:5px;vertical-align:top}th{background:#edf3f7}.checks{display:flex;gap:25px}.footer{position:absolute;bottom:0;left:0;right:0;border-top:1px solid #cbd5df;padding-top:4px;font-size:9px;color:#687684;display:flex;justify-content:space-between}@media print{body{background:#fff}.toolbar{display:none}.sheet{width:100%;min-height:0;height:auto;margin:0;padding:12mm;box-shadow:none;border:0;border-radius:0;page-break-after:always}.sheet:last-child{page-break-after:auto}.page{height:auto;min-height:0}.footer{position:static}}@media(max-width:800px){.sheet{width:calc(100% - 18px);height:auto;min-height:0;margin:9px auto;padding:18px 16px;border-radius:13px}.page{height:auto;min-height:0}.identity{grid-template-columns:1fr}.toolbar{position:sticky}.status{width:100%;margin:3px 0 0}}
+
+/* Tema putih-oranye, tetap ramah cetak A4 dan konsisten di seluruh halaman */
+:root{--orange:#f07824;--orange2:#ff9b42;--deep:#a9430a;--ink:#273344;--muted:#667487;--line:#f1c9a9;--pale:#fff5ec}
+body{background:#f5eee8;color:var(--ink)}
+.toolbar{background:linear-gradient(110deg,#9e3e0a,#f07824 68%,#ffad54);box-shadow:0 4px 16px rgba(110,54,19,.18);padding:12px}
+.toolbar button{background:#fff;color:#a9430a;border:1px solid #ffe0c7;border-radius:9px;box-shadow:0 2px 6px #71340e22}
+.toolbar button:hover{background:#fff4e9}
+.status{color:#fff;font-weight:bold}
+.sheet{border:1px solid #f4d7c2;box-shadow:0 5px 22px rgba(100,56,28,.12);border-radius:8px}
+h1{color:#a9430a;letter-spacing:.035em}
+h2{color:#e66b16}
+h3{color:#a9430a;border-bottom:2px solid #f07824;padding-bottom:6px;margin-top:15px}
+h4{color:#d85d10}
+.box{background:linear-gradient(110deg,#fff5ec,#fffaf5);border-left:5px solid #f07824;border-radius:8px;padding:9px}
+.identity{gap:9px}
+input,textarea{border:1px solid #e7b995;border-radius:7px;background:#fffdfb}
+input:focus,textarea:focus{outline:2px solid #ffd2ad;border-color:#f07824}
+th{background:#fff0e3;color:#9e3e0a;border-color:#efbd98}
+td,th{border-color:#e8c8b1}
+tr:nth-child(even) td{background:#fffaf6}
+.objectives-panel{background:linear-gradient(135deg,#fff8f1,#fff);border:1px solid #f4c6a2;border-left:5px solid #f07824;border-radius:10px;padding:9px 12px;margin:8px 0 10px}
+.objectives-intro{font-weight:bold;color:#8f3a0b;margin:0 0 5px}
+.objectives-panel ol{margin:5px 0 2px;padding-left:22px}
+.objectives-panel li{padding:3px 4px}
+.footer{border-top:1px solid #f1c9a9;color:#8b786b}
+.btn{background:linear-gradient(120deg,#f07824,#ffad54);color:white;box-shadow:0 3px 8px #9e3e0a22}
+.btn.alt{background:#fff;border:1px solid #e8b995;color:#a9430a}
+@media print{
+ body{background:#fff}
+ .toolbar{display:none}
+ .sheet{border:0;border-radius:0;box-shadow:none}
+ h3,.box,.objectives-panel,th,.btn{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+}
+
+
+/* Header utama yang lebih kuat dan menarik, tanpa tata letak A4 tetap */
+.hero{
+ position:relative;overflow:hidden;padding:34px 30px 27px;margin:0 0 25px;
+ color:#fff;border-radius:22px;border:1px solid #ffd8bd;border-bottom:7px solid #ff9b42;
+ background:radial-gradient(circle at 90% 10%,rgba(255,191,132,.28),transparent 14rem),linear-gradient(130deg,#873708 0%,#c65312 48%,#f07824 100%);
+ box-shadow:0 12px 30px rgba(145,65,15,.2)
+}
+.hero:after{content:"";position:absolute;width:230px;height:230px;border:1px solid rgba(255,255,255,.13);border-radius:50%;right:-75px;bottom:-135px;box-shadow:0 0 0 22px rgba(255,255,255,.045),0 0 0 46px rgba(255,255,255,.035)}
+.hero-kicker{display:inline-block;position:relative;z-index:1;background:#fff0e3;color:#963d0a;padding:6px 12px;border-radius:999px;font-size:.76rem;font-weight:900;letter-spacing:.08em}
+.hero-emblem{position:absolute;right:30px;top:38px;font-size:clamp(3.4rem,9vw,6.5rem);opacity:.23;transform:rotate(-12deg);line-height:1}
+.hero h1{position:relative;z-index:1;text-align:left;color:#fff;font-size:clamp(2rem,6vw,3.6rem);line-height:1.04;letter-spacing:.015em;margin:23px 0 8px}
+.hero h1 span{color:#ffe2a8}
+.hero h2{position:relative;z-index:1;text-align:left;color:#fff7ed;font-size:clamp(1.15rem,3vw,1.55rem);margin:0 0 12px}
+.hero p{position:relative;z-index:1;max-width:680px;font-size:1rem;line-height:1.6;color:#fff5ed;margin:0}
+.hero-meta{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.hero-meta span{display:inline-block;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:7px 11px;font-size:.8rem;font-weight:700;color:#fff}
+.sheet{border:1px solid #f4d7c2;box-shadow:0 7px 24px rgba(100,56,28,.1);border-radius:16px}
+h3{display:flex;align-items:center;gap:8px;font-size:1.02rem;background:linear-gradient(90deg,#fff2e7,#fff);padding:10px 12px;border-left:4px solid #f07824;border-bottom:1px solid #f4d7c2;border-radius:0 9px 9px 0}
+h4{margin-top:13px}
+.box{padding:11px 13px}
+.objectives-panel li{line-height:1.55}
+@media(max-width:600px){
+ .hero{padding:25px 18px 20px;border-radius:16px}
+ .hero-emblem{right:15px;top:33px;font-size:3.5rem}
+ .hero h1{font-size:2rem;max-width:80%;margin-top:20px}
+ .hero p{font-size:.93rem}
+ .hero-meta{gap:6px}
+ .hero-meta span{font-size:.73rem;padding:6px 8px}
+}
+@media print{
+ .hero{border-radius:0;box-shadow:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .hero-kicker,.hero-meta span,h3{ -webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
 </style></head><body>
 <div class="toolbar"><button onclick="print()">🖨️ Cetak / Simpan PDF</button><button onclick="saveDraft()">💾 Simpan Isian</button><button onclick="sendToSheets()">☁️ Kirim ke Spreadsheet</button><span id="status" class="status">Siap diisi</span></div>
 <form id="lkm">
-<section class="sheet"><div class="page"><h1>LEMBAR KERJA MURID (LKM)</h1><h2>MENGALAHKAN LORD MECHANIX — TUAS DAN KATROL</h2><div class="box"><b>Model:</b> Discovery Learning &nbsp; | &nbsp; <b>Pendekatan:</b> STEM &nbsp; | &nbsp; <b>Waktu:</b> 2 × 45 menit</div>
+<section class="sheet"><div class="page">
+<header class="hero">
+  <div class="hero-kicker">LEMBAR KERJA MURID • IPA SMP KELAS VIII</div>
+  <div class="hero-emblem" aria-hidden="true">⚙️</div>
+  <h1>MENGALAHKAN<br><span>LORD MECHANIX</span></h1>
+  <h2>Misi Tuas dan Katrol</h2>
+  <p>Jelajahi cara kerja pesawat sederhana, hitung keuntungan mekanis, dan rancang solusi untuk mempermudah pekerjaan dalam kehidupan sehari-hari.</p>
+  <div class="hero-meta">
+    <span>🔎 Discovery Learning</span><span>🧩 Pendekatan STEM</span><span>⏱️ 2 × 45 menit</span>
+  </div>
+</header>
 <h3>A. IDENTITAS KELOMPOK</h3><div class="identity"><div>Nama Kelompok<input name="namaKelompok" required></div><div>Kelas<input name="kelas" required></div><div>Anggota 1<input name="anggota1" required></div><div>Anggota 2<input name="anggota2" required></div><div>Anggota 3<input name="anggota3" required></div><div>Anggota 4<input name="anggota4"></div><div>Anggota 5<input name="anggota5"></div></div>
-<h3>B. TUJUAN PEMBELAJARAN</h3><ol><li>Mengidentifikasi bagian dan jenis tuas serta katrol.</li><li>Menjelaskan prinsip kerja tuas dan katrol.</li><li>Menghitung keuntungan mekanis tuas dan katrol.</li><li>Menganalisis penggunaan tuas dan katrol untuk mempermudah pekerjaan manusia.</li></ol>
-<h3>C. PETUNJUK KEGIATAN</h3><ol><li>Ikuti tahapan kegiatan sesuai urutan.</li><li>Gunakan game “Mengalahkan Lord Mechanix” untuk mengamati stimulus dan mengumpulkan informasi.</li><li>Diskusikan kegiatan bersama anggota kelompok.</li><li>Tuliskan hasil pengamatan dan pengolahan data pada tempat yang tersedia.</li></ol><div class="footer"><span>LKM Tuas dan Katrol</span><span>Halaman 1 dari 4</span></div></div></section>
+<h3>B. TUJUAN PEMBELAJARAN</h3>
+<div class="objectives-panel">
+  <p class="objectives-intro">Setelah mengikuti kegiatan pembelajaran ini, murid diharapkan mampu:</p>
+  <ol>
+    <li>Mengidentifikasi jenis-jenis tuas dan katrol serta menjelaskan prinsip kerjanya.</li>
+    <li>Menghitung keuntungan mekanis tuas dan katrol.</li>
+    <li>Menganalisis permasalahan dalam kehidupan sehari-hari dan merancang solusi menggunakan tuas dan katrol yang sesuai.</li>
+  </ol>
+</div>
+<h3>C. PETUNJUK KEGIATAN</h3><ol><li>Ikuti tahapan kegiatan sesuai urutan.</li><li>Gunakan game “Mengalahkan Lord Mechanix” untuk mengamati stimulus dan mengumpulkan informasi.</li><li>Diskusikan kegiatan bersama anggota kelompok.</li><li>Tuliskan hasil pengamatan dan pengolahan data pada tempat yang tersedia.</li></ol></div></section>
 
 <section class="sheet"><div class="page"><h3>1. STIMULATION — 🔎 AYO MENGAMATI!</h3><h4>Misi Memindahkan Batu</h4><p>Akses game “Mengalahkan Lord Mechanix” dan amati stimulus Misi Memindahkan Batu. Perhatikan bagaimana alat sederhana digunakan untuk membantu memindahkan batu yang berat.</p><b>Hasil pengamatan:</b><textarea name="stimulusBatu"></textarea>
 <h4>Misi Mengibarkan Bendera</h4><p>Amati stimulus Misi Mengibarkan Bendera. Perhatikan penggunaan tali dan katrol untuk membantu mengangkat bendera.</p><b>Hasil pengamatan:</b><textarea name="stimulusBendera"></textarea>
 <h3>2. PROBLEM STATEMENT — ❓ AYO MERUMUSKAN MASALAH!</h3><p>Setelah mengamati kedua stimulus, diskusikan hasil pengamatan bersama kelompok.</p><p><b>Rumuskan masalah yang berkaitan dengan penggunaan tuas dan katrol untuk mempermudah pekerjaan manusia.</b></p><h4>Rumusan Masalah tentang Tuas</h4><textarea name="masalahTuas"></textarea><h4>Rumusan Masalah tentang Katrol</h4><textarea name="masalahKatrol"></textarea>
-<h3>3. DATA COLLECTION — 🔎 AYO KUMPULKAN INFORMASI!</h3><p>Pelajari materi Tuas dan Katrol pada game. Catat informasi penting yang kamu temukan.</p><table><tr><th>Informasi</th><th>Hasil Temuan</th></tr><tr><td>Pengertian tuas</td><td><textarea name="dcTuasPengertian"></textarea></td></tr><tr><td>Bagian-bagian tuas</td><td><textarea name="dcTuasBagian"></textarea></td></tr><tr><td>Jenis-jenis tuas</td><td><textarea name="dcTuasJenis"></textarea></td></tr><tr><td>Keuntungan mekanis tuas</td><td><textarea name="dcTuasKM"></textarea></td></tr></table><div class="footer"><span>LKM Tuas dan Katrol</span><span>Halaman 2 dari 4</span></div></div></section>
+<h3>3. DATA COLLECTION — 🔎 AYO KUMPULKAN INFORMASI!</h3><p>Pelajari materi Tuas dan Katrol pada game. Catat informasi penting yang kamu temukan.</p><table><tr><th>Informasi</th><th>Hasil Temuan</th></tr><tr><td>Pengertian tuas</td><td><textarea name="dcTuasPengertian"></textarea></td></tr><tr><td>Bagian-bagian tuas</td><td><textarea name="dcTuasBagian"></textarea></td></tr><tr><td>Jenis-jenis tuas</td><td><textarea name="dcTuasJenis"></textarea></td></tr><tr><td>Keuntungan mekanis tuas</td><td><textarea name="dcTuasKM"></textarea></td></tr></table></div></section>
 
 <section class="sheet"><div class="page"><h3>3. DATA COLLECTION — 🔎 LANJUTKAN!</h3><table><tr><th>Informasi</th><th>Hasil Temuan</th></tr><tr><td>Pengertian katrol</td><td><textarea name="dcKatrolPengertian"></textarea></td></tr><tr><td>Jenis-jenis katrol</td><td><textarea name="dcKatrolJenis"></textarea></td></tr><tr><td>Prinsip kerja katrol</td><td><textarea name="dcKatrolPrinsip"></textarea></td></tr><tr><td>Keuntungan mekanis katrol</td><td><textarea name="dcKatrolKM"></textarea></td></tr></table>
 <h3>4. DATA PROCESSING — 🧠 AYO OLAH DATA!</h3><h4>1. Mengidentifikasi Bagian dan Jenis Tuas</h4><p>Perhatikan contoh tuas yang terdapat pada game.</p><div class="identity"><div>Titik tumpu<input name="dpTuasTumpu"></div><div>Beban<input name="dpTuasBeban"></div><div>Kuasa<input name="dpTuasKuasa"></div><div>Jenis tuas<input name="dpTuasJenis"></div></div><b>Alasan:</b><textarea name="dpTuasAlasan"></textarea>
 <h4>2. Menghitung Keuntungan Mekanis Tuas</h4><p>Sebuah tuas digunakan untuk mengangkat beban sebesar <b>300 N</b> dengan gaya sebesar <b>100 N</b>.</p><p><b>Diketahui:</b> Beban = 300 N &nbsp;&nbsp; Kuasa = 100 N &nbsp;&nbsp; <b>Ditanyakan:</b> KM = ?</p><b>Penyelesaian:</b><textarea name="dpTuasHitung"></textarea><b>KM =</b><input name="dpTuasJawaban">
 <h4>3. Mengidentifikasi Jenis Katrol</h4><p>Perhatikan jenis katrol yang terdapat pada game.</p><b>Jenis katrol:</b><input name="dpKatrolJenis"><b>Bagaimana katrol tersebut membantu mengangkat beban?</b><textarea name="dpKatrolFungsi"></textarea>
-<div class="footer"><span>LKM Tuas dan Katrol</span><span>Halaman 3 dari 4</span></div></div></section>
+</div></section>
 
 <section class="sheet"><div class="page"><h3>4. DATA PROCESSING — 🧠 LANJUTKAN!</h3><h4>4. Menghitung Keuntungan Mekanis Katrol</h4><p>Sebuah katrol digunakan untuk mengangkat beban sebesar <b>200 N</b> dengan gaya sebesar <b>100 N</b>.</p><p><b>Diketahui:</b> Beban = 200 N &nbsp;&nbsp; Kuasa = 100 N &nbsp;&nbsp; <b>Ditanyakan:</b> KM = ?</p><b>Penyelesaian:</b><textarea name="dpKatrolHitung"></textarea><b>KM =</b><input name="dpKatrolJawaban">
 <h3>5. VERIFICATION — ✅ AYO VERIFIKASI!</h3><p>Bandingkan hasil pekerjaan kelompokmu dengan hasil pekerjaan kelompok lain.</p><div class="checks"><label><input type="radio" name="perbedaan" value="Tidak"> Tidak terdapat perbedaan</label><label><input type="radio" name="perbedaan" value="Ya"> Terdapat perbedaan</label></div><b>Jika terdapat perbedaan, bagian yang berbeda:</b><textarea name="verifikasiBagian"></textarea><b>Hasil diskusi:</b><textarea name="verifikasiHasil"></textarea><p>Guru memberikan penguatan terhadap hasil diskusi dan konsep yang telah ditemukan.</p>
-<h3>6. GENERALIZATION — 💡 AYO MENARIK KESIMPULAN!</h3><h4>Tuas</h4><b>Tuas adalah:</b><textarea name="genTuasDef"></textarea><b>Tuas dapat mempermudah pekerjaan manusia karena:</b><textarea name="genTuasFungsi"></textarea><h4>Katrol</h4><b>Katrol adalah:</b><textarea name="genKatrolDef"></textarea><b>Katrol dapat mempermudah pekerjaan manusia karena:</b><textarea name="genKatrolFungsi"></textarea><h4>Kesimpulan Kelompok</h4><textarea name="genKesimpulan"></textarea><div class="footer"><span>LKM Tuas dan Katrol</span><span>Halaman 4 dari 4</span></div></div></section></form>
+<h3>6. GENERALIZATION — 💡 AYO MENARIK KESIMPULAN!</h3><h4>Tuas</h4><b>Tuas adalah:</b><textarea name="genTuasDef"></textarea><b>Tuas dapat mempermudah pekerjaan manusia karena:</b><textarea name="genTuasFungsi"></textarea><h4>Katrol</h4><b>Katrol adalah:</b><textarea name="genKatrolDef"></textarea><b>Katrol dapat mempermudah pekerjaan manusia karena:</b><textarea name="genKatrolFungsi"></textarea><h4>Kesimpulan Kelompok</h4><textarea name="genKesimpulan"></textarea></div></section></form>
 <script>
 const APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbyQn1i2E7JXzLQjN2HgpXhhktztTs1nM_g1CTGx87gXgdLuFAiJRUg_yMQVqWvApRcJ/exec";
 function data(){let d={};document.querySelectorAll("#lkm input,#lkm textarea").forEach(e=>{if(e.type==="radio"){if(e.checked)d[e.name]=e.value}else d[e.name]=e.value});d.waktuPengisian=new Date().toLocaleString("id-ID");return d}
